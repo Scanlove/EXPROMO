@@ -1,35 +1,47 @@
+/* Reinicio básico */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Configuraciones del cuerpo */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #282828;
-    color: white;
+    background-color: #141414;  /* Fondo oscuro elegante */
+    color: #f2f2f2;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     height: 100vh;
-    overflow: hidden;
+    overflow-y: scroll;  /* Permitir el desplazamiento vertical */
+    scroll-behavior: smooth; /* Desplazamiento suave */
+    padding: 20px;
 }
 
+/* Efectos para el texto de introducción */
 #intro {
-    position: absolute;
-    top: 30%;
+    position: relative;
+    top: 20%;
     text-align: center;
     z-index: 1;
+    background-color: rgba(255, 255, 255, 0.1); /* Fondo translúcido */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
 #promo {
-    font-size: 5rem;
+    font-size: 4rem;
+    color: #ff6363; /* Texto de color llamativo */
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5); /* Sombra en el texto */
     opacity: 0;
     transform: scale(0);
-    animation: zoomIn 2s forwards;
+    animation: zoomIn 1.5s forwards, colorChange 3s infinite alternate; /* Animación de entrada y cambio de color */
 }
 
+/* Animación de zoom */
 @keyframes zoomIn {
     to {
         opacity: 1;
@@ -37,9 +49,20 @@ body {
     }
 }
 
+/* Animación para cambio de color del texto */
+@keyframes colorChange {
+    from {
+        color: #ff6363;
+    }
+    to {
+        color: #00d4ff;
+    }
+}
+
+/* Slideshow centrado */
 #slideshow {
-    position: absolute;
-    top: 50%;
+    position: relative;
+    top: 10%;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -47,39 +70,78 @@ body {
     z-index: 2;
 }
 
+/* Animación para cada elemento del slideshow */
 .slideshow-item {
-    width: 500px;
+    width: 90%; /* Ajuste para pantallas móviles */
+    max-width: 400px;
     height: auto;
     opacity: 0;
     position: absolute;
-    transition: opacity 2s ease-in-out;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    transition: opacity 2s ease-in-out, transform 2s ease-in-out;
+    transform: scale(0.8); /* Un ligero "zoom out" */
 }
 
+.slideshow-item:not(.hidden) {
+    transform: scale(1); /* Aumenta el tamaño cuando es visible */
+}
+
+/* Para ocultar elementos */
 .hidden {
     display: none;
 }
 
+/* Galería de recuerdos */
 #gallery {
-    position: absolute;
-    top: 80%;
+    position: relative;
+    top: 40%;
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
+    justify-content: center;
     opacity: 0;
     transition: opacity 2s;
 }
 
 .gallery-image {
-    width: 300px;
+    width: 45%; /* Ajustado para móviles */
     height: auto;
     margin: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
 }
 
+.gallery-image:hover {
+    transform: scale(1.05); /* Efecto de aumento en hover */
+}
+
+/* Animación de desvanecimiento */
 @keyframes fadeIn {
     0% {
         opacity: 0;
     }
     100% {
         opacity: 1;
+    }
+}
+
+/* Agregado para asegurar el diseño responsivo para móviles */
+@media only screen and (max-width: 768px) {
+    body {
+        height: auto;
+    }
+    
+    #promo {
+        font-size: 3rem;
+    }
+    
+    .slideshow-item {
+        width: 90%;
+        max-width: 300px;
+    }
+    
+    .gallery-image {
+        width: 90%;
     }
 }
