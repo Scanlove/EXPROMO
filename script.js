@@ -3,45 +3,41 @@ const slideshowItems = document.querySelectorAll('.slideshow-item');
 const gallery = document.getElementById('gallery');
 const galleryContent = document.getElementById('gallery-content');
 
-// Esperar hasta que el texto "PROMO 2014" termine su animación
-setTimeout(() => {
-    let index = 0;
+let index = 0;
+let repeatCount = 0;
+const maxRepeats = 2;  // Número de veces que el ciclo se repetirá
 
-    function showSlideshow() {
-        // Ocultar todos los elementos del slideshow
-        slideshowItems.forEach(item => {
-            item.style.opacity = 0;
-        });
+// Mostrar el slideshow y repetir 2 veces
+function showSlideshow() {
+    // Ocultar todos los elementos del slideshow
+    slideshowItems.forEach(item => {
+        item.style.opacity = 0;
+        item.classList.add('hidden');
+    });
 
-        // Mostrar el siguiente elemento
-        slideshowItems[index].style.opacity = 1;
-        slideshowItems[index].classList.remove('hidden');
+    // Mostrar el siguiente elemento
+    slideshowItems[index].classList.remove('hidden');
+    slideshowItems[index].style.opacity = 1;
 
-        // Pasar al siguiente elemento, si llega al final vuelve al principio
-        index = (index + 1) % slideshowItems.length;
+    // Pasar al siguiente elemento, si llega al final vuelve al principio
+    index = (index + 1) % slideshowItems.length;
 
-        // Repetir el proceso cada 4 segundos
-        setTimeout(showSlideshow, 4000);
+    // Si hemos completado una vuelta al slideshow
+    if (index === 0) {
+        repeatCount++;
     }
 
-    showSlideshow();
-
-    // Mostrar la galería después de 30 segundos (5 imágenes + video)
-    setTimeout(() => {
-        // Mostrar la galería estática
-        gallery.classList.remove('hidden');
-        gallery.style.opacity = 1;
-
-        // Quitar las animaciones del slideshow
-        slideshowItems.forEach(item => {
-            item.classList.add('hidden');
-        });
-
-        // Añadir animación suave para el subtítulo de la galería
-        const caption = document.querySelector('.caption');
-        caption.style.opacity = 0;
+    // Repetir el proceso o detener cuando se haya repetido el máximo
+    if (repeatCount < maxRepeats) {
+        setTimeout(showSlideshow, 4000);  // Repetir cada 4 segundos
+    } else {
+        // Después de dos repeticiones, mostrar la galería estática
         setTimeout(() => {
-            caption.style.opacity = 1;
-        }, 500);
-    }, 30000);  // 30 segundos para que aparezca la galería
-}, 2000);  // Después de 2 segundos cuando termina la animación del texto
+            gallery.classList.remove('hidden');
+            gallery.style.opacity = 1;
+        }, 4000);  // Esperar al último elemento antes de mostrar la galería
+    }
+}
+
+// Iniciar el slideshow después de 2 segundos
+setTimeout(showSlideshow, 2000);
