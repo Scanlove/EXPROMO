@@ -2,7 +2,7 @@ const promoText = document.getElementById('promo');
 const slideshowItems = document.querySelectorAll('.slideshow-item');
 const gallery = document.getElementById('gallery');
 
-// Esperar hasta que el texto "PROMO 2014" termine su animación
+// Esperar hasta que el texto "PROMO 2014" termine su animaciónes
 setTimeout(() => {
     let index = 0;
 
