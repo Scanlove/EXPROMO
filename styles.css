@@ -11,15 +11,19 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    overflow: hidden;  /* Evitar scroll mientras el slideshow está activo */
+    flex-direction: column;
+    min-height: 100vh; /* Cambiado a min-height para permitir scroll si el contenido es más alto */
+    overflow-x: hidden; /* Evitar el scroll horizontal */
+    overflow-y: auto; /* Permitir el scroll vertical */
+    scroll-behavior: smooth; /* Suavizar el scroll */
+    padding: 20px;
 }
 
 #intro {
-    position: fixed;
-    top: 10%;
+    position: relative;
     text-align: center;
     z-index: 1;
+    margin-bottom: 20px;
 }
 
 #promo {
@@ -39,20 +43,18 @@ body {
 }
 
 #slideshow {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);  /* Centrar el slideshow */
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: auto;
     z-index: 2;
+    margin-bottom: 20px; /* Espacio entre el slideshow y el contenido siguiente */
 }
 
 .slideshow-item {
-    width: 70%;  /* Tamaño grande para las imágenes */
+    width: 80%;  /* Ajuste para pantallas móviles */
     height: auto;
     opacity: 0;  /* Inicialmente invisibles */
     position: absolute;
@@ -67,15 +69,16 @@ body {
     display: none;  /* La galería permanece oculta hasta que se muestre */
     opacity: 0;
     transition: opacity 2s;
+    width: 100%;  /* Asegurar que la galería ocupe el ancho completo en móviles */
 }
 
-/* Solo para la galería estática una vez que el slideshow haya terminado */
 .gallery-image {
-    width: 45%;
-    margin: 10px;
+    width: 90%;  /* Ajuste para pantallas móviles */
+    margin: 10px auto;  /* Centrar las imágenes de la galería */
     height: auto;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    display: block; /* Asegurar que las imágenes se comporten como bloques */
 }
 
 .caption {
@@ -87,16 +90,22 @@ body {
     transition: opacity 2s ease;
 }
 
+/* Diseño responsivo para móviles */
 @media only screen and (max-width: 768px) {
+    body {
+        padding: 10px;
+        min-height: auto; /* Asegurar que el cuerpo se expanda en móviles */
+    }
+    
     #promo {
         font-size: 3rem;
     }
     
     .slideshow-item {
-        width: 90%;
+        width: 90%;  /* Más pequeño en pantallas móviles */
     }
 
     .gallery-image {
-        width: 90%;
+        width: 95%;  /* Más ancho para pantallas pequeñas */
     }
 }
