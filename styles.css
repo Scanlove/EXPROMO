@@ -69,6 +69,7 @@ body {
     display: none;  /* La galería está oculta inicialmente */
     opacity: 0;
     transition: opacity 2s;
+    width: 100%;  /* Asegurar que la galería ocupe el ancho completo en móviles */
 }
 
 
