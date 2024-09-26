@@ -43,15 +43,18 @@ body {
 }
 
 #slideshow {
-    position: relative;
+    position: fixed;  /* Cambia a fixed para que ocupe toda la pantalla */
+    top: 0;
+    left: 0;
+    width: 100vw;  /* Asegura que el contenedor ocupe todo el ancho de la ventana */
+    height: 100vh;  /* Asegura que el contenedor ocupe toda la altura de la ventana */
     display: flex;
     justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: auto;
+    align-items: center;  /* Centrará los elementos en el medio de la pantalla */
     z-index: 2;
-    margin-bottom: 20px; /* Espacio entre el slideshow y el contenido siguiente */
+    margin-bottom: 20px;
 }
+
 
 .slideshow-item {
     width: 80%;  /* Ajuste para pantallas móviles */
