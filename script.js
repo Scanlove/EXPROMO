@@ -1,13 +1,20 @@
 const promoText = document.getElementById('promo');
 const slideshowItems = document.querySelectorAll('.slideshow-item');
 const gallery = document.getElementById('gallery');
-const galleryContent = document.getElementById('gallery-content');
-
 let index = 0;
-let repeatCount = 0;
-const maxRepeats = 2;  // Número de veces que el ciclo se repetirá
 
-// Mostrar el slideshow y repetir 2 veces
+// Añadir estilos para que las imágenes aparezcan grandes y centradas
+function setSlideshowStyles(item) {
+    item.style.position = 'absolute';
+    item.style.top = '50%';
+    item.style.left = '50%';
+    item.style.transform = 'translate(-50%, -50%)';  // Centrar en la página
+    item.style.width = '80%';  // Tamaño grande para las imágenes
+    item.style.height = 'auto';  // Mantener proporción
+    item.style.opacity = 1;
+}
+
+// Mostrar el slideshow una vez
 function showSlideshow() {
     // Ocultar todos los elementos del slideshow
     slideshowItems.forEach(item => {
@@ -15,27 +22,22 @@ function showSlideshow() {
         item.classList.add('hidden');
     });
 
-    // Mostrar el siguiente elemento
+    // Mostrar el siguiente elemento en el centro y grande
     slideshowItems[index].classList.remove('hidden');
-    slideshowItems[index].style.opacity = 1;
+    setSlideshowStyles(slideshowItems[index]);
 
-    // Pasar al siguiente elemento, si llega al final vuelve al principio
-    index = (index + 1) % slideshowItems.length;
+    // Pasar al siguiente elemento
+    index++;
 
-    // Si hemos completado una vuelta al slideshow
-    if (index === 0) {
-        repeatCount++;
-    }
-
-    // Repetir el proceso o detener cuando se haya repetido el máximo
-    if (repeatCount < maxRepeats) {
-        setTimeout(showSlideshow, 4000);  // Repetir cada 4 segundos
+    // Si hemos llegado al final, mostrar la galería y detener el slideshow
+    if (index < slideshowItems.length) {
+        setTimeout(showSlideshow, 4000); // Mostrar la siguiente imagen o video cada 4 segundos
     } else {
-        // Después de dos repeticiones, mostrar la galería estática
         setTimeout(() => {
+            // Después de que todas las imágenes hayan aparecido, mostrar la galería estática
             gallery.classList.remove('hidden');
             gallery.style.opacity = 1;
-        }, 4000);  // Esperar al último elemento antes de mostrar la galería
+        }, 4000); // Esperar antes de mostrar la galería estática
     }
 }
 
