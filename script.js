@@ -9,8 +9,7 @@ function setSlideshowStyles(item) {
     item.style.top = '50%';
     item.style.left = '50%';
     item.style.transform = 'translate(-50%, -50%)';  // Centrar en la página
-    item.style.width = '80%';  // Tamaño grande para las imágenes
-    item.style.height = 'auto';  // Mantener proporción
+    item.style.width = '70%';  // Tamaño grande para las imágenes
     item.style.opacity = 1;
 }
 
@@ -35,8 +34,8 @@ function showSlideshow() {
     } else {
         setTimeout(() => {
             // Después de que todas las imágenes hayan aparecido, mostrar la galería estática
-            gallery.classList.remove('hidden');
-            gallery.style.opacity = 1;
+            gallery.style.display = 'block';  // Mostrar la galería
+            gallery.style.opacity = 1;  // Transición suave para la galería
         }, 4000); // Esperar antes de mostrar la galería estática
     }
 }
