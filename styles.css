@@ -66,11 +66,11 @@ body {
 }
 
 #gallery {
-    display: none;  /* La galería permanece oculta hasta que se muestre */
+    display: none;  /* La galería está oculta inicialmente */
     opacity: 0;
     transition: opacity 2s;
-    width: 100%;  /* Asegurar que la galería ocupe el ancho completo en móviles */
 }
+
 
 .gallery-image {
     width: 90%;  /* Ajuste para pantallas móviles */
