@@ -31,7 +31,7 @@ function showSlideshow() {
 
     // Si hemos llegado al final, mostrar la galería y ocultar el slideshow
     if (index < slideshowItems.length) {
-        setTimeout(showSlideshow, 4000); // Mostrar la siguiente imagen o video cada 4 segundos
+        setTimeout(showSlideshow, 2000); // Mostrar la siguiente imagen o video cada 4 segundos
     } else {
         setTimeout(() => {
             // Después de que todas las imágenes hayan aparecido, ocultar el contenedor del slideshow
