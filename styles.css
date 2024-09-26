@@ -43,17 +43,18 @@ body {
 }
 
 #slideshow {
-    position: fixed;  /* Cambia a fixed para que ocupe toda la pantalla */
-    top: 0;
-    left: 0;
-    width: 100vw;  /* Asegura que el contenedor ocupe todo el ancho de la ventana */
-    height: 100vh;  /* Asegura que el contenedor ocupe toda la altura de la ventana */
+    position: absolute;
+    top: 50%;               /* Posicionar el contenedor al 50% de la altura de la página */
+    left: 50%;              /* Posicionar el contenedor al 50% del ancho de la página */
+    transform: translate(-50%, -50%);  /* Moverlo hacia el centro exacto */
     display: flex;
     justify-content: center;
-    align-items: center;  /* Centrará los elementos en el medio de la pantalla */
+    align-items: center;
+    width: 100%;
+    height: auto;
     z-index: 2;
-    margin-bottom: 20px;
 }
+
 
 
 .slideshow-item {
