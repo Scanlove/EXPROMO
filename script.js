@@ -1,5 +1,6 @@
 const promoText = document.getElementById('promo');
 const slideshowItems = document.querySelectorAll('.slideshow-item');
+const slideshowContainer = document.getElementById('slideshow');  // Referencia al contenedor del slideshow
 const gallery = document.getElementById('gallery');
 let index = 0;
 
@@ -28,12 +29,13 @@ function showSlideshow() {
     // Pasar al siguiente elemento
     index++;
 
-    // Si hemos llegado al final, mostrar la galería y detener el slideshow
+    // Si hemos llegado al final, mostrar la galería y ocultar el slideshow
     if (index < slideshowItems.length) {
         setTimeout(showSlideshow, 4000); // Mostrar la siguiente imagen o video cada 4 segundos
     } else {
         setTimeout(() => {
-            // Después de que todas las imágenes hayan aparecido, mostrar la galería estática
+            // Después de que todas las imágenes hayan aparecido, ocultar el contenedor del slideshow
+            slideshowContainer.style.display = 'none';  // Desaparecer el slideshow de la página
             gallery.style.display = 'block';  // Mostrar la galería
             gallery.style.opacity = 1;  // Transición suave para la galería
         }, 4000); // Esperar antes de mostrar la galería estática
